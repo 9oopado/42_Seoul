@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:42:40 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/24 18:23:59 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:32:46 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	ft_converted_len(int n)
 		len++;
 		tmp = -tmp;
 	}
-	while (tmp < 0)
+	while (tmp > 0)
 	{
 		len++;
 	tmp /= 16;

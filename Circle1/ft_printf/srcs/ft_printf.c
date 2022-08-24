@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:42:28 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/24 18:10:58 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:33:19 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ int	ft_printf(const char *format, ...)
 #include <stdio.h>
 int	main(void)
 {
-	printf("s:%s  d:%d  i:%i  %%  c:%c  u:%u  x:%x  X:%X\n", "Hello", 4, 2, '!', -2147483647, 10, 10);
-	ft_printf("s:%s  d:%d  i:%i  %%  c:%c  u:%u  x:%x  X:%X\n", "Hello", 4, 2, '!', -2147483647, 10, 10);
+	printf("s:%s  d:%d  i:%i  %%  c:%c  u:%u  x:%x  X:%X\n", "Hello", 4, 2, '!', -2147483647, 123456789, 123456789);
+	ft_printf("s:%s  d:%d  i:%i  %%  c:%c  u:%u  x:%x  X:%X\n", "Hello", 4, 2, '!', -2147483647, 123456789, 123456789);
 }
