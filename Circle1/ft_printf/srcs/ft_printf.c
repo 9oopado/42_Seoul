@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:42:28 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/24 10:37:19 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/24 10:40:47 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,8 @@ int ft_strlen(char *str)
     return (len);
 }
 
-int ft_print_string(va_list ap)
+int ft_print_string(char *str)
 {
-    char *str;
-    
-    str = va_arg(ap, char *);
     if (!str)
         str = "(null)";
     return (write(1, str, ft_strlen(str)));
@@ -44,7 +41,7 @@ int ft_parse(va_list ap, char type)
     if (type == 'c')
         return (ft_print_char(va_arg(ap, int)));
     else if (type == 's')
-        return (ft_print_string(ap));
+        return (ft_print_string(va_arg(ap, char *)));
     // else if (type == 'p')
     //     return ();
     // else if (type == 'd')
@@ -100,5 +97,5 @@ int ft_printf(const char *format, ...)
 
 int main()
 {
-    ft_printf("hello %c%s", 'w', "orld");
+    ft_printf("hello %s", "world");
 }
