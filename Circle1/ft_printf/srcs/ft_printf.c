@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:42:28 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/24 17:36:54 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:10:58 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	ft_parse(va_list ap, char type)
 	else if (type == 'u')
 		return (ft_print_decimal(va_arg(ap, unsigned int), U_INT));
 	else if (type == 'x')
-		return (ft_print_hexadecimal(va_arg(ap, int)));
-	// else if (type == 'X')
-	// 	return ();
+		return (ft_print_hexadecimal(va_arg(ap, int), 0));
+	else if (type == 'X')
+		return (ft_print_hexadecimal(va_arg(ap, int), 1));
 	else if (type == '%')
 		return (ft_print_char('%'));
 	else
@@ -69,5 +69,5 @@ int	ft_printf(const char *format, ...)
 int	main(void)
 {
 	printf("s:%s  d:%d  i:%i  %%  c:%c  u:%u  x:%x  X:%X\n", "Hello", 4, 2, '!', -2147483647, 10, 10);
-	ft_printf("s:%s  d:%d  i:%i  %%  c:%c  u:%u\n", "Hello", 4, 2, '!', -2147483647);
+	ft_printf("s:%s  d:%d  i:%i  %%  c:%c  u:%u  x:%x  X:%X\n", "Hello", 4, 2, '!', -2147483647, 10, 10);
 }

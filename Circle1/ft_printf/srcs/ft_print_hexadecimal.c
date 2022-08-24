@@ -6,37 +6,84 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:42:40 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/24 17:36:52 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/24 18:23:59 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char *ft_toupper(char *str)
+static char	*ft_toupper(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] >= 'a' && str[i] <= 'z')
-            str[i] -= 32;
-        i++;
-    }
-    return (str);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 'a' && str[i] <= 'z')
+			str[i] -= 32;
+		i++;
+	}
+	return (str);
 }
 
-static char *ft_dec_to_hex(int n)
+static int	ft_converted_len(int n)
 {
-    // 10 -> 16 진수 변환
-    return ("");
+	int			len;
+	long long	tmp;
+
+	len = 0;
+	tmp = (long long)n;
+	if (tmp <= 0)
+	{
+		len++;
+		tmp = -tmp;
+	}
+	while (tmp < 0)
+	{
+		len++;
+	tmp /= 16;
+	}
+	return (len);
 }
 
-int ft_print_hexadecimal(int n)
+static char	*ft_dec_to_hex(int n)
 {
-    char    *hex_n;
+	int			len;
+	char		*arr;
+	long long	nbr;
 
-    hex_n = ft_dec_to_hex(n);
-    // 플래그 줘서 toupper 처리
-    return (write(1, hex_n, ft_strlen(hex_n)));
+	len = ft_converted_len(n);
+	arr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!arr)
+		return (0);
+	nbr = (long long)n;
+	arr[len--] = '\0';
+	if (nbr < 0)
+	{
+		arr[0] = '-';
+		nbr = -nbr;
+	}
+	if (nbr == 0)
+	{
+		arr[0] = '0';
+		return (arr);
+	}
+	while (nbr > 0)
+	{
+		arr[len--] = "0123456789abcdef"[nbr % 16];
+		nbr /= 16;
+	}
+	return (arr);
+}
+
+int	ft_print_hexadecimal(int n, int flag)
+{
+	char	*hex_n;
+
+	hex_n = ft_dec_to_hex(n);
+	if (!hex_n)
+		return (-1);
+	if (flag)
+		hex_n = ft_toupper(hex_n);
+	return (write(1, hex_n, ft_strlen(hex_n)));
 }
