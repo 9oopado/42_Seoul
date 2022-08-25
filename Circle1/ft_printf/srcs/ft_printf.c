@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:24:48 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/25 21:35:05 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/26 00:50:36 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_run(va_list *ap, const char *format)
 
 int	ft_printf(const char *format, ...)
 {
-	va_list ap;
+	va_list	ap;
 	int		cnt;
 
 	va_start(ap, format);
@@ -71,8 +71,12 @@ int	ft_printf(const char *format, ...)
 // {
 // 	printf("---- printf ----\n");
 // 	printf("%%c : %c\n%%s : %s\n%%p : %p\n%%d : %d\n%%i : %i\n%%u : %u\n%%x : %x\n%%X : %X\n", 
-// 		'a', "Hi i'm jikoo", (void *)0, 42, 42, -42, 42, 42);
+// 		'a', "Hi i'm jikoo", (void *)0, -42, 42, -42, 42, 42);
 // 	ft_printf("---- ft_printf ----\n");
 // 	ft_printf("%%c : %c\n%%s : %s\n%%p : %p\n%%d : %d\n%%i : %i\n%%u : %u\n%%x : %x\n%%X : %X\n", 
-// 		'a', "Hi i'm jikoo", (void *)0, 42, 42, -42, 42, 42);
+// 		'a', "Hi i'm jikoo", (void *)0, -42, 42, -42, 42, 42);
+// 	ft_printf("42 - 84 is %d", -42);
+// 	ft_printf("%d\n", -42);
+// 	printf("%p\n", (void *)-1);
+// 	ft_printf("%p\n", (void *)0);
 // }

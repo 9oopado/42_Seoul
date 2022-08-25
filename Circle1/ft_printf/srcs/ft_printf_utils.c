@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:43:03 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/25 20:57:59 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/26 00:51:12 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strlen(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str[len])
@@ -22,13 +22,11 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-static char	*ft_convert(long long n, char *base, int base_len, int size)
+static char	*ft_convert(long long n, char *arr, char *base, int size)
 {
-	char	*arr;
-    
-	arr = (char *)malloc(sizeof(char) * (size + 1));
-	if (!arr)
-		return (NULL);
+	int	base_len;
+
+	base_len = ft_strlen(base);
 	arr[size--] = '\0';
 	if (n < 0)
 	{
@@ -48,7 +46,7 @@ static char	*ft_convert(long long n, char *base, int base_len, int size)
 	return (arr);
 }
 
-char	*ft_itoa_base(long long n, char *base)
+void	*ft_itoa_base(long long n, char *arr, char *base)
 {
 	int			size;
 	int			base_len;
@@ -67,5 +65,5 @@ char	*ft_itoa_base(long long n, char *base)
 		size++;
 		tmp /= base_len;
 	}
-	return (ft_convert(n, base, base_len, size));
+	return (ft_convert(n, arr, base, size));
 }

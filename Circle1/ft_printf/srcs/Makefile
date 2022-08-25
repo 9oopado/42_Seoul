@@ -6,7 +6,7 @@
 #    By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/25 20:59:46 by jikoo             #+#    #+#              #
-#    Updated: 2022/08/25 21:00:15 by jikoo            ###   ########.fr        #
+#    Updated: 2022/08/25 22:03:08 by jikoo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS        = ft_printf.c ft_printf_utils.c ft_print_chr.c ft_print_str.c \
 
 OBJS		= $(SRCS:c=o)
 
-NAME		= ft_printf.a
+NAME		= libftprintf.a
 
 all: $(NAME)
 

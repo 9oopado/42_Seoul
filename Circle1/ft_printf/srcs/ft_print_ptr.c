@@ -6,43 +6,46 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:48:15 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/25 21:35:08 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/26 00:56:54 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_strcat(char *dst, char *src)
+static int	ft_get_len(unsigned long long addr)
 {
-	while (*dst)
-		dst++;
-	while (*src)
-		*dst++ = *src++;
-	*dst = '\0';
+	int	len;
+
+	if (addr == 0)
+		return (1);
+	len = 0;
+	while (addr > 0)
+	{
+		addr /= 16;
+		len++;
+	}
+	return (len);
 }
 
-static char	*ft_strjoin(char *s1, char *s2)
+static void	ft_convert(unsigned long long addr, char *arr)
 {
 	int		len;
-	char	*join_str;
 
-	if (!s1 || !s2)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	join_str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!join_str)
-		return (NULL);
-	join_str[0] = '\0';
-	ft_strcat(join_str, s1);
-	ft_strcat(join_str, s2);
-	return (join_str);
+	len = ft_get_len(addr) + 2;
+	arr[0] = '0';
+	arr[1] = 'x';
+	arr[len--] = '\0';
+	while (len >= 2)
+	{
+		arr[len--] = "0123456789abcdef"[addr % 16];
+		addr /= 16;
+	}
 }
 
-int	ft_print_ptr(unsigned long long n)
+int	ft_print_ptr(unsigned long long addr)
 {
-	char	*ptr;
+	char	ptr[19];
 
-	ptr = ft_itoa_base(n, "0123456789abcdef");
-	ptr = ft_strjoin("0x", ptr);
+	ft_convert(addr, ptr);
 	return (ft_print_str(ptr));
 }
