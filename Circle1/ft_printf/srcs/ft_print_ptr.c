@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:48:15 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/25 21:20:36 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/25 21:35:08 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static char	*ft_strjoin(char *s1, char *s2)
 
 int	ft_print_ptr(unsigned long long n)
 {
-	char	*ptr_n;
+	char	*ptr;
 
-	ptr_n = ft_itoa_base(n, "0123456789abcdef");
-	ptr_n = ft_strjoin("0x", ptr_n);
-	return (ft_print_str(ptr_n));
+	ptr = ft_itoa_base(n, "0123456789abcdef");
+	ptr = ft_strjoin("0x", ptr);
+	return (ft_print_str(ptr));
 }

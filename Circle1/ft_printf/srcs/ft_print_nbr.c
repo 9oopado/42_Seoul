@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:10:08 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/25 20:56:13 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/08/25 21:35:07 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ static char	*ft_toupper(char *str)
 
 int	ft_print_dec(long long n)
 {
-	char	*dec_n;
+	char	*dec;
 
-	dec_n = ft_itoa_base(n, "0123456789");
-	return (ft_print_str(dec_n));
+	dec = ft_itoa_base(n, "0123456789");
+	return (ft_print_str(dec));
 }
 
 int	ft_print_hex(long long n, int flag)
 {
-	char	*hex_n;
+	char	*hex;
 
-	hex_n = ft_itoa_base(n, "0123456789abcdef");
+	hex = ft_itoa_base(n, "0123456789abcdef");
 	if (flag)
-		hex_n = ft_toupper(hex_n);
-	return (ft_print_str(hex_n));
+		hex = ft_toupper(hex);
+	return (ft_print_str(hex));
 }
