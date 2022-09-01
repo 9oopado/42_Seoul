@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 19:10:08 by jikoo             #+#    #+#             */
-/*   Updated: 2022/08/26 00:49:00 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/09/01 14:29:06 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_print_dec(long long n)
 
 int	ft_print_hex(long long n, int flag)
 {
-	char	hex[17];
+	char	hex[9];
 
 	if (flag)
 		ft_itoa_base(n, hex, "0123456789ABCDEF");
