@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:24:48 by jikoo             #+#    #+#             */
-/*   Updated: 2022/09/01 14:22:58 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/09/06 16:20:27 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,22 @@ int	ft_parse(va_list *ap, char type)
 
 int	ft_run(va_list *ap, const char *format)
 {
+	int	i;
 	int	count;
 	int	check;
 
+	i = 0;
 	count = 0;
-	while (*format)
+	while (format[i])
 	{
-		if (*format != '%')
-			check = write(1, format, 1);
-		else if (*(++format) != '\0')
-			check = ft_parse(ap, *format);
+		if (format[i] != '%')
+			check = write(1, &format[i], 1);
+		else if (format[++i] != '\0')
+			check = ft_parse(ap, format[i]);
 		if (check < 0)
 			return (-1);
 		count += check;
-		format++;
+		i++;
 	}
 	return (count);
 }
