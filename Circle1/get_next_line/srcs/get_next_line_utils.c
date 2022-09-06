@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:15:15 by jikoo             #+#    #+#             */
-/*   Updated: 2022/09/06 15:53:33 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/09/06 17:46:38 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		len;
 	char	*join_str;
 
+	if (!s1 || !s2)
+		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
 	join_str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!join_str)
@@ -64,7 +66,7 @@ char	*ft_strldup(char *str, int start, int size)
 	if (!dup_str)
 		return (NULL);
 	idx = 0;
-	while (str[idx] && idx < size)
+	while (str[start + idx] && idx < size)
 	{
 		dup_str[idx] = str[start + idx];
 		idx++;
