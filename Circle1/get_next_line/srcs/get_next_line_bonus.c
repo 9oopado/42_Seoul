@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 16:14:37 by jikoo             #+#    #+#             */
-/*   Updated: 2022/09/07 19:47:20 by jikoo            ###   ########.fr       */
+/*   Created: 2022/09/06 19:45:23 by jikoo             #+#    #+#             */
+/*   Updated: 2022/09/07 19:48:14 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_get_line(char **backup, char *buffer)
 {
@@ -69,24 +69,24 @@ char	*get_next_line(int fd)
 {
 	int			idx;
 	char		*buffer;
-	static char	*backup;
+	static char	*backup[OPEN_MAX];
 
 	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 	{
-		if (backup)
+		if (backup[fd])
 		{
-			free(backup);
-			backup = NULL;
+			free(backup[fd]);
+			backup[fd] = NULL;
 		}
 		return (NULL);
 	}
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	if (!backup)
-		backup = ft_strldup("", 0, 0);
-	idx = ft_find_nextline(backup);
+	if (!(backup[fd]))
+		backup[fd] = ft_strldup("", 0, 0);
+	idx = ft_find_nextline(backup[fd]);
 	if (idx != -1)
-		return (ft_get_line_nl(&backup, buffer, idx));
-	return (ft_read_text(fd, &backup, buffer));
+		return (ft_get_line_nl(&backup[fd], buffer, idx));
+	return (ft_read_text(fd, &backup[fd], buffer));
 }
