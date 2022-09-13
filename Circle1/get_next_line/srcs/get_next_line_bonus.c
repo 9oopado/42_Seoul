@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 19:45:23 by jikoo             #+#    #+#             */
-/*   Updated: 2022/09/13 18:17:17 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/09/13 20:24:26 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*get_next_line(int fd)
 {
 	int			idx;
 	char		*buffer;
-	static char	*backup[OPEN_MAX];
+	static char	*backup[49152];
 
 	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 	{

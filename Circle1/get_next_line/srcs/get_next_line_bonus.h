@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 19:47:19 by jikoo             #+#    #+#             */
-/*   Updated: 2022/09/13 16:47:30 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/09/13 20:24:15 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include <fcntl.h>
-# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 
