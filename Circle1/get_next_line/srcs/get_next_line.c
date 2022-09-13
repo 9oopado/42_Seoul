@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:14:37 by jikoo             #+#    #+#             */
-/*   Updated: 2022/09/07 19:47:20 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/09/13 16:31:11 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static char	*ft_get_line_nl(char **backup, char *buffer, int idx)
 	char	*line;
 	char	*temp;
 
-	idx = ft_find_nextline(*backup);
 	line = ft_strldup(*backup, 0, idx + 1);
 	temp = ft_strldup(*backup, idx + 1, ft_strlen(*backup) - idx - 1);
 	free(*backup);
