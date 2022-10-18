@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:36:15 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/18 20:32:37 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/10/18 20:53:47 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	ft_init_map(t_map *map, char *file_name)
 	ft_check_extension(file_name);
 	ft_count_col_row(map, file_name);
 	ft_set_map(map, file_name);
-	ft_check_components(map->map_str);
 	ft_check_rectangle(map);
+	ft_check_components(map->map_str);
 	ft_check_wall(map);
 }
