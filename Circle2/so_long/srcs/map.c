@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:36:15 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/18 20:53:47 by jikoo            ###   ########.fr       */
+/*   Created: 2022/10/20 17:18:19 by jikoo             #+#    #+#             */
+/*   Updated: 2022/10/20 19:40:56 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
-static void	ft_check_extension(char *file_name)
+static void	ft_check_file_type(char *file_name)
 {
 	if (ft_strcmp(file_name + ft_strlen(file_name) - 4, ".ber"))
-		ft_return_error("Wrong extension.");
+		ft_print_err_and_exit("Invalid file type, use .ber!");
 }
 
-static void	ft_count_col_row(t_map *map, char *file_name)
+static void	ft_count_col_and_row(t_map *map, char *file_name)
 {
 	int		fd;
 	int		cur_col;
@@ -26,7 +26,7 @@ static void	ft_count_col_row(t_map *map, char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		ft_return_error("Map file open failed.");
+		ft_print_err_and_exit("File not found!");
 	cur_col = 0;
 	map->col = 0;
 	map->row = 0;
@@ -45,7 +45,7 @@ static void	ft_count_col_row(t_map *map, char *file_name)
 	close(fd);
 }
 
-static void	ft_set_map(t_map *map, char *file_name)
+static void	ft_set_map(t_map *map, char *file_name, int idx)
 {
 	int		fd;
 	int		cur_col;
@@ -54,11 +54,10 @@ static void	ft_set_map(t_map *map, char *file_name)
 
 	map->map_str = (char *)malloc(sizeof(char) * (map->col * map->row + 1));
 	if (!map->map_str)
-		ft_return_error("Allocation failed.");
+		ft_print_err_and_exit("Memory allocation error!");
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		ft_return_error("Map file open failed.");
-	map->map_str[map->col * map->row] = '\0';
+		ft_print_err_and_exit("File not found!");
 	cur_row = 0;
 	while (cur_row < map->row)
 	{
@@ -67,11 +66,18 @@ static void	ft_set_map(t_map *map, char *file_name)
 		cur_col = 0;
 		while (cur_col < ft_strlen(line))
 		{
-			map->map_str[cur_row * map->col + cur_col] = line[cur_col];
+			map->map_str[idx++] = line[cur_col];
 			cur_col++;
 		}
 		cur_row++;
 	}
+	map->map_str[idx] = '\0';
+}
+
+static void	ft_check_rectangle(t_map *map)
+{
+	if (ft_strlen(map->map_str) != map->col * map->row)
+		ft_print_err_and_exit("Map must be rectangular!");
 }
 
 static void	ft_check_components(char *map_str)
@@ -94,18 +100,12 @@ static void	ft_check_components(char *map_str)
 		else if (map_str[idx] == 'P')
 			player++;
 		else if (map_str[idx] != '1' && map_str[idx] != '0')
-			ft_return_error("Map contains invalid value.");
+			ft_print_err_and_exit("Unexpected char(s) in map!");
 		idx++;
 	}
 	if (!exit || !collectible || !player)
-		ft_return_error("Map must have at least one exit(E)," \
-			" one collectible(C), and one starting position(P).");
-}
-
-static void	ft_check_rectangle(t_map *map)
-{
-	if (ft_strlen(map->map_str) != map->col * map->row)
-		ft_return_error("Map must be rectangular.");
+		ft_print_err_and_exit("Map must have at least one exit(E)," \
+			" one collectible(C), and one starting position(P)!");
 }
 
 static void	ft_check_wall(t_map *map)
@@ -118,7 +118,7 @@ static void	ft_check_wall(t_map *map)
 	{
 		if (map->map_str[cur_col] != '1'
 			|| map->map_str[(map->row - 1) * map->col + cur_col] != '1')
-			ft_return_error("Map must be closed by walls.");
+			ft_print_err_and_exit("Map must be surrounded by walls!");
 		cur_col++;
 	}
 	cur_row = 0;
@@ -126,16 +126,16 @@ static void	ft_check_wall(t_map *map)
 	{
 		if (map->map_str[cur_row * map->col] != '1'
 			|| map->map_str[cur_row * map->col + (map->col - 1)] != '1')
-			ft_return_error("Map must be closed by walls.");
+			ft_print_err_and_exit("Map must be surrounded by walls!");
 		cur_row++;
 	}
 }
 
 void	ft_init_map(t_map *map, char *file_name)
 {
-	ft_check_extension(file_name);
-	ft_count_col_row(map, file_name);
-	ft_set_map(map, file_name);
+	ft_check_file_type(file_name);
+	ft_count_col_and_row(map, file_name);
+	ft_set_map(map, file_name, 0);
 	ft_check_rectangle(map);
 	ft_check_components(map->map_str);
 	ft_check_wall(map);

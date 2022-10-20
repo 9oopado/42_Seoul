@@ -5,25 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 15:51:58 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/18 19:43:48 by jikoo            ###   ########.fr       */
+/*   Created: 2022/10/20 17:09:18 by jikoo             #+#    #+#             */
+/*   Updated: 2022/10/20 18:43:07 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
+
+void	ft_print_err_and_exit(char *message)
+{
+	printf("Error\n" RED "%s\n" RESET, message);
+	exit(1);
+}
 
 int	main(int argc, char *argv[])
 {
 	t_game	game;
 
-	(void)game;
-	(void)argv;
-	if (argc == 1)
-		ft_return_error("Map file is required.");
-	if (argc == 2)
-	{
-		ft_init_map(&game.map, argv[1]);
-		return (0);
-	}
-	ft_return_error("Too many arguments.");
+	if (argc != 2)
+		ft_print_err_and_exit("Invalid number of arguments!");
+	ft_init_map(&game.map, argv[1]);
+	ft_start_game(&game);
+	return (0);
 }

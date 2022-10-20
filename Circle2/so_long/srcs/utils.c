@@ -5,18 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 16:36:39 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/18 19:46:17 by jikoo            ###   ########.fr       */
+/*   Created: 2022/10/20 17:23:04 by jikoo             #+#    #+#             */
+/*   Updated: 2022/10/20 18:32:49 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-void	ft_return_error(char *message)
-{
-	printf(RED "Error\n" CYAN "%s\n" RESET, message);
-	exit(1);
-}
+#include "includes/so_long.h"
 
 int	ft_strlen(char *str)
 {
