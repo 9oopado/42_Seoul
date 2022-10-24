@@ -6,15 +6,15 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:09:18 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/20 18:43:07 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/10/24 16:00:29 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 void	ft_print_err_and_exit(char *message)
 {
-	printf("Error\n" RED "%s\n" RESET, message);
+	printf(RED "Error\n" RESET "%s\n", message);
 	exit(1);
 }
 

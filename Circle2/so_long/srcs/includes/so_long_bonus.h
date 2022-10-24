@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 16:38:13 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/24 21:03:18 by jikoo            ###   ########.fr       */
+/*   Created: 2022/10/24 15:09:52 by jikoo             #+#    #+#             */
+/*   Updated: 2022/10/24 21:21:49 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <fcntl.h>
 # include <mlx.h>
@@ -43,7 +43,8 @@ typedef enum e_direction
 	Up,
 	Down,
 	Left,
-	Right			
+	Right,
+	Stop
 }	t_direction;
 
 typedef struct s_sprite
@@ -62,32 +63,44 @@ typedef struct s_map
 	char	*map_str;
 }	t_map;
 
-typedef struct s_game
+typedef struct s_player
 {
 	int			cnt;
-	int			collectible;
-	void		*mlx_ptr;
-	void		*win_ptr;
+	int			col;
+	int			row;
+	int			x;
+	int			y;
+	t_direction	direction;
+}	t_player;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
 	t_sprite	sprites;
 	t_map		map;
+	t_player	player;
 }	t_game;
 
-/* map.c */
+/* map */
 void	ft_init_map(t_map *map, char *file_name);
 void	ft_verify_map(t_map *map);
 
-/* sprites.c */
+/* sprites */
 void	ft_init_sprites(t_game *game);
 void	ft_set_sprites(t_game *game);
 
-/* move.c */
+/* player */
+void	ft_init_player(t_game *game);
+
+/* move */
 void	ft_move(t_game *game, t_direction direction);
 
-/* game.c */
+/* game */
 void	ft_start_game(t_game *game);
 int		ft_exit_game(t_game *game);
 
-/* utils ... */
+/* utils */
 void	ft_print_err_and_exit(char *message);
 
 int		ft_strlen(char *str);

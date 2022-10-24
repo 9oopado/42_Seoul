@@ -6,11 +6,11 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:24:27 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/20 17:35:20 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/10/24 15:05:56 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 static int	ft_find_nextline(char *str)
 {
