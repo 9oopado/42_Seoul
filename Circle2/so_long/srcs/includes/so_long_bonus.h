@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:09:52 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/24 21:21:49 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/10/26 17:27:17 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,22 @@ typedef struct s_sprite
 {
 	void	*black;
 	void	*pacfood;
-	void	*pacman;
 	void	*portal;
 	void	*wall;
 }	t_sprite;
+
+typedef struct s_pl_sprite
+{
+	void	*closed;
+	void	*up;
+	void	*up_semi;
+	void	*down;
+	void	*down_semi;
+	void	*left;
+	void	*left_semi;
+	void	*right;
+	void	*right_semi;
+}	t_pl_sprite;
 
 typedef struct s_map
 {
@@ -75,9 +87,11 @@ typedef struct s_player
 
 typedef struct s_game
 {
+	int			collectible;
 	void		*mlx;
 	void		*win;
 	t_sprite	sprites;
+	t_pl_sprite	pl_sprites;
 	t_map		map;
 	t_player	player;
 }	t_game;
@@ -88,13 +102,18 @@ void	ft_verify_map(t_map *map);
 
 /* sprites */
 void	ft_init_sprites(t_game *game);
+void	ft_init_pl_sprites(t_game *game);
 void	ft_set_sprites(t_game *game);
 
 /* player */
 void	ft_init_player(t_game *game);
+void	*ft_get_pl_sprite(t_game *game);
 
 /* move */
-void	ft_move(t_game *game, t_direction direction);
+void	ft_move_up(t_game *game);
+void	ft_move_down(t_game *game);
+void	ft_move_left(t_game *game);
+void	ft_move_right(t_game *game);
 
 /* game */
 void	ft_start_game(t_game *game);

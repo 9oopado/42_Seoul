@@ -6,7 +6,7 @@
 /*   By: jikoo <jikoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:43:54 by jikoo             #+#    #+#             */
-/*   Updated: 2022/10/24 21:03:54 by jikoo            ###   ########.fr       */
+/*   Updated: 2022/10/26 17:27:45 by jikoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,34 @@
 
 static void	ft_init_game(t_game *game)
 {
+	int	idx;
+
 	ft_init_player(game);
+	ft_init_pl_sprites(game);
 	ft_init_sprites(game);
 	ft_set_sprites(game);
+	game->collectible = 0;
+	idx = 0;
+	while (game->map.map_str[idx])
+	{
+		if (game->map.map_str[idx] == 'C')
+			game->collectible++;
+		idx++;
+	}
 }
 
 static int	ft_press_key(int key_code, t_game *game)
 {
 	if (key_code == KEY_ESC)
 		ft_exit_game(game);
-	// else if (key_code == KEY_W)
-	// 	ft_move(game, Up);
-	// else if (key_code == KEY_A)
-	// 	ft_move(game, Left);
-	// else if (key_code == KEY_S)
-	// 	ft_move(game, Down);
-	// else if (key_code == KEY_D)
-	// 	ft_move(game, Right);
+	else if (key_code == KEY_W)
+		ft_move_up(game);
+	else if (key_code == KEY_A)
+		ft_move_left(game);
+	else if (key_code == KEY_S)
+		ft_move_down(game);
+	else if (key_code == KEY_D)
+		ft_move_right(game);
 	return (0);
 }
 
